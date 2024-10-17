@@ -1,12 +1,15 @@
-name: test/test
+name: test1/test
 on:
-#   # The shortest interval you can run scheduled workflows is once every 5 minutes.
-#   period: '180'
-#   description: trigger
+#   # This item has no matching transformer
+#   bitbucket-server-trigger:
+#     description: bb
+  push:
 jobs:
-  Default-Stage-Spring:
+  Checkout+Build-Default-Job:
     runs-on: ubuntu-latest
     steps:
-  Default-Stage-Default-Job:
-    runs-on: ubuntu-latest
-    steps:
+    - uses: actions/checkout@v4.1.0
+      with:
+        clean: false
+    - name: echo
+      run: echo "hello"
