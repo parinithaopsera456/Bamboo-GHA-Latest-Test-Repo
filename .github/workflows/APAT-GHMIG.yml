@@ -1,0 +1,61 @@
+name: GH-Migration
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Default Repository
+        uses: actions/checkout@v2
+        with:
+          repository: Demo-SCM-Mig/hello-world-war-maven-2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Echo Hi
+        run: echo "hi"
+
+      - name: Checkout Repo2
+        uses: actions/checkout@v2
+        with:
+          repository: Demo-SCM-Mig/Test-2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  build-Docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Default Repository
+        uses: actions/checkout@v2
+        with:
+          repository: Demo-SCM-Mig/hello-world-war-maven-2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Echo
+        run: echo "hello User"
+
+      - name: Run Docker Container
+        uses: docker://node:14
+        with:
+          args: npm install && npm test
+
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Default Repository
+        uses: actions/checkout@v2
+        with:
+          repository: Demo-SCM-Mig/hello-world-war-maven-2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-e1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Default Repository
+        uses: actions/checkout@v2
+        with:
+          repository: Demo-SCM-Mig/hello-world-war-maven-2
+          token: ${{ secrets.GITHUB_TOKEN }}
