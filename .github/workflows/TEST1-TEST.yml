@@ -1,0 +1,33 @@
+name: Test Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          repository: Srinath-Opsera/Test-1
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub Secrets for authentication
+
+      - name: Echo Hello
+        run: echo "hello"
+
+      # Note: Bamboo-specific features like artifact subscriptions, triggers,
+      # and branch management do not have direct equivalents in GitHub Actions.
+
+      # Notifications
+      # GitHub does not directly support webhooks via YAML configuration.
+      # Use GitHub Actions to trigger external services or notifications.
+      
+permissions:
+  contents: read  # Set appropriate permissions as per the needs
+
+# Note: Plan permissions in Bamboo are not directly translatable to GitHub Actions.
+# GitHub repository permissions should be managed via repository settings.
