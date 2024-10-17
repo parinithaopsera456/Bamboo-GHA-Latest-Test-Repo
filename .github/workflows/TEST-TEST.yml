@@ -1,28 +1,38 @@
 name: Test Workflow
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   schedule:
-    - cron: '*/3 * * * *'  # Every 3 hours, similar to the 180-minute polling period in Bamboo
+    - cron: '*/3 * * * *'  # equivalent to Bamboo's polling every 180 minutes
+  workflow_dispatch:  # allows for manual trigger equivalent to Bamboo manual creation of branches
 
 jobs:
   spring:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
+
+      # Placeholder for tasks in Spring job
+      # Bamboo tasks need to be translated into GitHub Actions steps
 
   default_job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
-# Note: Bamboo-specific features like artifact-subscriptions, triggers, and branch handling do not have direct equivalents in GitHub Actions.
-# - GitHub Actions does not natively support artifact subscriptions; manual steps or alternative solutions may be needed.
-# - Bamboo's branch handling and integration strategies need manual implementation in GitHub Actions.
+      # Placeholder for tasks in Default Job
+      # Bamboo tasks need to be translated into GitHub Actions steps
+
+  # Note: Artifact subscriptions are not directly supported in GitHub Actions
+
+# Notifications, branch management, and Jira linking features are not directly supported
+# in GitHub Actions. These need to be handled manually or using third-party integrations.
+
+# Plan permissions are not directly supported in GitHub Actions. Use GitHub repository
+# settings for access control.
+
+# Dependencies and concurrent build settings are not directly supported and need
+# manual handling if required.
